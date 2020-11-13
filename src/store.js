@@ -8,7 +8,7 @@ export default new Vuex.Store({
     roundNumber: 0,
     roundStarted: false,
 
-    diceAlphabet: "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""),
+    diceAlphabet: "ABCDEFGHIJKLMNOPRSTW".split(""),
     usedLetters: []
   },
 
