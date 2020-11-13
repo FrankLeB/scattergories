@@ -8,6 +8,7 @@ export default new Vuex.Store({
     roundNumber: 0,
     roundStarted: false,
 
+    diceAlphabet: "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""),
     usedLetters: []
   },
 
@@ -52,6 +53,10 @@ export default new Vuex.Store({
 
     roundStarted(state) {
       return state.roundStarted;
+    },
+
+    diceAlphabet(state) {
+      return state.diceAlphabet;
     },
 
     usedLetters(state) {

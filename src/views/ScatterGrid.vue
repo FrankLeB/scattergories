@@ -14,6 +14,8 @@
         <br>
         <br>
       </div>
+
+      <app-letters-bar></app-letters-bar>
     </div>
   </div>
 </template>
@@ -21,11 +23,13 @@
 <script>
 import Dice from "../components/Dice.vue";
 import Questions from "../components/Questions.vue";
+import LettersBar from "../components/LettersBar.vue";
 
 export default {
   components: {
     appDice: Dice,
-    appQuestions: Questions
+    appQuestions: Questions,
+    appLettersBar: LettersBar
   },
 
   computed: {

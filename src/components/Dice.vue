@@ -10,20 +10,6 @@
       @click="startRound"
     >{{ buttonText }}</button>
 
-    <div class="fixed-bottom">
-      <div class="card">
-        <div class="card-body">
-          <h4>
-            <span
-              v-for="(letter, k) in diceAlphabet"
-              :key="k"
-              class="mx-1"
-              :class="{'used-letter': checkIfUsed(letter)}"
-            >{{ letter }}</span>
-          </h4>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -31,7 +17,6 @@
 export default {
   data() {
     return {
-      diceAlphabet: [],
       currentLetter: "-",
 
       buttonText: "Start",
@@ -39,32 +24,25 @@ export default {
       timer: 0
     };
   },
-  
-  created() {
-    this.diceAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-  },
 
-  methods: {
-    checkIfUsed(l) {
-      const usedLetters = this.$store.getters.usedLetters;
-      const letterUsed = usedLetters.find(letter => l === letter);
-
-      if (letterUsed) {
-        return true;
-      }
-      return false;
+  computed: {
+    diceAlphabet() {
+      return this.$store.getters.diceAlphabet;
     },
 
+    usedLetters() {
+      return this.$store.getters.usedLetters;
+    }
+  },
+  
+  methods: {
     isGameOver() {
       return this.$store.getters.roundNumber === 0;
     },
 
     startRound() {
-      // Retrieve all unused letters and select one at random
-      const usedLetters = this.$store.getters.usedLetters;
-
       const possibleLetters = this.diceAlphabet.filter(
-        letter => !usedLetters.includes(letter)
+        letter => !this.usedLetters.includes(letter)
       );
       const letterIndex = Math.floor(Math.random() * possibleLetters.length);
 
@@ -99,8 +77,5 @@ export default {
 </script>
  
 <style scoped>
-.used-letter {
-  color: #edefee;
-}
 </style>
  
